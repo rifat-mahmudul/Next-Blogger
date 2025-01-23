@@ -47,9 +47,12 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-               { user ? <Link href={'/api/auth/login'} className="btn bg-green-500 text-white text-lg font-semibold hover:bg-green-600">Log in</Link>
-               :
-                <Link href={'/api/auth/logout'} className="btn text-lg font-semibold btn-warning hover:btn-warning">Log Out</Link>}
+               { 
+                user ?
+                <Link href={'/api/auth/logout'} className="btn text-lg font-semibold btn-warning hover:btn-warning">Log Out</Link> 
+                :
+                <Link href={'/api/auth/login'} className="btn bg-green-500 text-white text-lg font-semibold hover:bg-green-600">Log in</Link>
+            }
             </div>
         </div>
     </div>

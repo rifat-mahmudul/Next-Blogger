@@ -1,8 +1,13 @@
-'use client'
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import Link from 'next/link'
 import React from 'react'
 
 const Header = () => {
+    
+    const {getUser} = getKindeServerSession();
+
+    const user = getUser();
+
   return (
     <div className='flex justify-between items-center mx-w-[90%] xl:max-w-[1200px] mx-auto'>
         <div className="navbar">
@@ -42,8 +47,9 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link href={'/login'} className="btn bg-green-500 text-white text-lg font-semibold hover:bg-green-600">Log in</Link>
-                <Link href={'/logout'} className="btn text-lg font-semibold btn-warning hover:btn-warning">Log Out</Link>
+               { user ? <Link href={'/api/auth/login'} className="btn bg-green-500 text-white text-lg font-semibold hover:bg-green-600">Log in</Link>
+               :
+                <Link href={'/api/auth/logout'} className="btn text-lg font-semibold btn-warning hover:btn-warning">Log Out</Link>}
             </div>
         </div>
     </div>

@@ -2,11 +2,11 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import Link from 'next/link'
 import React from 'react'
 
-const Header = () => {
+const Header = async () => {
     
-    const {getUser} = getKindeServerSession();
-
-    const user = getUser();
+    const {getUser} = await getKindeServerSession();
+    const user = await getUser();
+    console.log(user.family_name);
 
   return (
     <div className='flex justify-between items-center mx-w-[90%] xl:max-w-[1200px] mx-auto'>
@@ -47,12 +47,18 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-               { 
-                user ?
-                <Link href={'/api/auth/logout'} className="btn text-lg font-semibold btn-warning hover:btn-warning">Log Out</Link> 
+                {user ? 
+                <>
+                    <div className='flex items-center gap-2'>
+                    <h1 className='font-bold'>{user?.family_name}</h1>
+                    <Link href={'/api/auth/logout'} className="btn text-lg font-semibold btn-warning hover:btn-warning">Log Out</Link>
+                    </div>
+                </>
                 :
+                <>
                 <Link href={'/api/auth/login'} className="btn bg-green-500 text-white text-lg font-semibold hover:bg-green-600">Log in</Link>
-            }
+                </>
+                }
             </div>
         </div>
     </div>

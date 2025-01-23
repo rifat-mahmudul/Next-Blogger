@@ -6,7 +6,6 @@ const Header = async () => {
     
     const {getUser} = await getKindeServerSession();
     const user = await getUser();
-    console.log(user.family_name);
 
   return (
     <div className='flex justify-between items-center mx-w-[90%] xl:max-w-[1200px] mx-auto'>

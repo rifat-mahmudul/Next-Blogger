@@ -1,14 +1,6 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
-import { redirect } from "next/navigation";
 
 const page = async () => {
 
-  const {isAuthenticated} = await getKindeServerSession();
-  const isUserAuthenticated = await isAuthenticated();
-
-  if (!isUserAuthenticated) {
-    redirect('/api/auth/login');
-  }
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-75px)]">
